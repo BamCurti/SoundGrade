@@ -13,6 +13,6 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         theme: mainTheme,
         darkTheme: darkTheme,
-        home: LoginPage());
+        home: const LoginPage());
   }
 }

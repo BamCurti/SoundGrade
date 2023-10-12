@@ -3,6 +3,8 @@ import 'package:soundgrade/widgets/title.dart';
 import 'package:soundgrade/screens/feed.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -37,23 +39,29 @@ class _LoginPageState extends State<LoginPage> {
                     TextFormField(
                       controller: _emailController,
                       decoration: const InputDecoration(labelText: 'Email'),
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                   TextFormField(
                     controller: _emailController,
                     decoration: const InputDecoration(labelText: 'Username'),
-                    validator: (value) {},
+                    validator: (value) {
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
-                    validator: (value) {},
+                    validator: (value) {
+                      return null;
+                    },
                   ),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FeedPage()));
+                          MaterialPageRoute(builder: (context) => const FeedPage()));
                     },
                     child: _isLoginForm
                         ? const Text('Login')

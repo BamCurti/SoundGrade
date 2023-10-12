@@ -4,6 +4,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:soundgrade/utils/style.dart';
 
 class RatingPage extends StatefulWidget {
+  const RatingPage({super.key});
+
   @override
   _RatingPageState createState() => _RatingPageState();
 }
@@ -11,13 +13,13 @@ class RatingPage extends StatefulWidget {
 class _RatingPageState extends State<RatingPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   double _rating = 0.0;
-  String _comment = '';
+  final String _comment = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rating Page'),
+        title: const Text('Rating Page'),
       ),
       body: Form(
         key: _formKey,
@@ -41,12 +43,14 @@ class _RatingPageState extends State<RatingPage> {
               TextFormField(
                 maxLines: null,
                 decoration: const InputDecoration(labelText: 'Comment'),
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onSaved: (value) {},
               ),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
             ],
           ),
