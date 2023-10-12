@@ -14,6 +14,7 @@ const Color backgroundDarkColor = Color.fromRGBO(20, 20, 20, 1);
 const Color backgroundLightColor = Color.fromRGBO(253, 253, 253, 1);
 
 ThemeData mainTheme = ThemeData(
+  primaryColor: mainColor,
   brightness: Brightness.light,
   scaffoldBackgroundColor: backgroundLightColor,
   textTheme: const TextTheme().apply(bodyColor: backgroundDarkColor),
@@ -27,6 +28,7 @@ ThemeData mainTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
+  primaryColor: darkerMainColor,
   brightness: Brightness.dark,
   scaffoldBackgroundColor: backgroundDarkColor,
   textTheme: const TextTheme().apply(bodyColor: backgroundLightColor),
