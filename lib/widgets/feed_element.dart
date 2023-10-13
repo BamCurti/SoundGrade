@@ -14,7 +14,7 @@ class FeedElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        children: [Image.asset(""), Container()],
+        children: [/*Image.asset(""),*/ Container()],
       ),
     );
   }

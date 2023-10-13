@@ -21,7 +21,7 @@ class FeedPage extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
+      body: Center(
         child: FeedElement(),
       ),
     );
