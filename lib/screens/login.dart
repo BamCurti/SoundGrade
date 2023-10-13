@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const FeedPage()));
+                          MaterialPageRoute(builder: (context) => const MainPage()));
                     },
                     child: _isLoginForm
                         ? const Text('Login')
