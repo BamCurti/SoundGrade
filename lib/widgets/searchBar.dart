@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 
-class SearchWidget extends StatelessWidget {
+class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: 15.0), // Adjust horizontal margin for width
+      padding: EdgeInsets.only(
+          top: 6.0, bottom: 6.0), // Adjust top and bottom padding for height
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(25.0),
       ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.search),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Search...',
-                ),
-              ),
-            ),
-          ),
-        ],
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Search...',
+          hintStyle: TextStyle(color: Colors.grey),
+          prefixIcon: Icon(null),
+          suffixIcon: Icon(Icons.search, color: Colors.black),
+          border: InputBorder.none,
+        ),
       ),
     );
   }

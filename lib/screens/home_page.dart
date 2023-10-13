@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundgrade/utils/style.dart';
+import 'package:soundgrade/screens/rating.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Material App Bar'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+        body: RatingPage(),
       ),
     );
   }
