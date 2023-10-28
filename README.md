@@ -4,13 +4,41 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## How to push your changes
+ * Check you're in development branch.
+ * Pull the previous changes from the origin. Use the following command:
+ ```shell
+ git pull
+ ```
+ * Create a new branch. You can use
+ ```shell
+ git checkout -b branch_name
+ ```
 
-A few resources to get you started if this is your first Flutter project:
+ or
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ ```shell
+ git branch branch_name
+ git checkout branch_name
+ ```
+ 
+ * Add the needed changes. Use the following command.
+ ```bash
+ git add .
+ ```
+ * Commit your changes. Add the message directly from the terminal with the following command:
+ ``` bash
+ git commit -m "Add a commit message"
+ ```
+ * Checkout to development branch.
+ ```bash
+ git checkout development
+ ```
+ * Merge your changes.
+ ```bash
+ git merge branch_name
+ ```
+ * Push your changes to development origin.
+ ```bash
+ git push
+ ```
