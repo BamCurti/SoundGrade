@@ -42,3 +42,21 @@ A new Flutter project.
  ```bash
  git push
  ```
+
+### Adding other changes in your branch.
+If you pulled other changes in development branch:
+* Verified if there is more changes:
+```bash
+git checkout development
+git pull
+```
+
+* Checkout to your branch
+```bash
+git checkout branch_name
+```
+
+* Rebase other changes
+```bash
+git rebase development
+```
