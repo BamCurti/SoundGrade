@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soundgrade/widgets/songCard.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
-import 'package:soundgrade/screens/dummyData_feed.dart';
-import 'package:soundgrade/screens/rating.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
-
+import 'package:soundgrade/data/songs.dart';
 
 class Review {
   final String profileImageUrl;

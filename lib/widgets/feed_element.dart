@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soundgrade/utils/style.dart';
 
 class FeedElement extends StatelessWidget {
   String heading = "White pony";

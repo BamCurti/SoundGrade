@@ -1,0 +1,23 @@
+[
+    {
+        "rater": "Jessica99",
+        "title": "Vision of Division",
+        "artist": "The Strokes",
+        "rating": 5,
+        "imageUrl": "lib/assets/images/thestrokes.jpg" 
+    },
+    {
+        "rater": "Curti232",
+        "title": "Crying Lightning",
+        "artist": "Arctic Monkeys",
+        "rating": 4,
+        "imageUrl": "lib/assets/images/hub.png"
+    },
+    {
+        "rater": "Mochi!!",
+        "title": "PYT",
+        "artist": "Michael Jackson",
+        "rating": 5,
+        "imageUrl": "lib/assets/images/pyt.png"
+    }
+]

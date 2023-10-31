@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundgrade/screens/post.dart'; // Import your PostPage.dart
-import 'package:soundgrade/screens/dummyData_feed.dart';
+import 'package:soundgrade/data/songs.dart';
 
 class SongCard extends StatelessWidget {
   final Song songInfo;
@@ -60,5 +60,38 @@ class SongCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SongList extends StatelessWidget {
+  const SongList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: readDummySongs(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("${snapshot.error}"),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(
+              child: Text("No data available"),
+            );
+          } else {
+            final data = snapshot.data;
+            return ListView.builder(
+              itemCount: data!.length,
+              itemBuilder: (context, index) {
+                return SongCard(songInfo: data[index]);
+              },
+            );
+          }
+        });
   }
 }

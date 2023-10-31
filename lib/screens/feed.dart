@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:soundgrade/widgets/feed_element.dart';
 import 'package:soundgrade/widgets/songCard.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
-import 'package:soundgrade/screens/dummyData_feed.dart';
-import 'package:soundgrade/screens/rating.dart';
 
 import 'package:soundgrade/screens/login.dart';
-import 'package:soundgrade/screens/post.dart';
 import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
 
@@ -19,17 +15,10 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        backgroundColor: Color.fromRGBO(103, 28, 112, 1),
+        backgroundColor: const Color.fromRGBO(103, 28, 112, 1),
         title: CustomSearchBar(),
       ),
-      body: ListView.builder(
-        itemCount: dummySongsInfo.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [SongCard(songInfo: dummySongsInfo[index])],
-          );
-        },
-      ),
+      body: SongList(),
       bottomNavigationBar: BottomNavbar(
         currentIndex: 0,
         onTap: (index) {
