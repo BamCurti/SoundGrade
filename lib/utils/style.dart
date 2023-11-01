@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Color palette
-const Color mainColor = Color.fromRGBO(103, 28, 112, 1);
-const Color darkerMainColor = Color.fromRGBO(103, 28, 112, 1);
+const Color mainColor = Color.fromRGBO(173, 53, 158, 1);
+const Color darkerMainColor = Color.fromRGBO(131, 38, 118, 1);
 const Color lighterMainColor = Color.fromRGBO(140, 90, 207, 1);
 const Color lightestPurle = Color.fromRGBO(210, 179, 251, 1);
 const Color accentColorOrange = Color.fromRGBO(255, 165, 45, 1);

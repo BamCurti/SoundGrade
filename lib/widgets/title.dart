@@ -5,9 +5,6 @@ class SoundGradeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      "SoundGrade",
-      style: TextStyle(fontFamily: "DelaGothicOne", fontSize: 26),
-    );
+    return Image.asset('lib/assets/images/logo.png');
   }
 }
