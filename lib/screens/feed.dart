@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/songCard.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
@@ -15,7 +16,7 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        backgroundColor: const Color.fromRGBO(103, 28, 112, 1),
+        backgroundColor: mainColor,
         title: CustomSearchBar(),
       ),
       body: SongList(),

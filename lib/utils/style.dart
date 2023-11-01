@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const Color mainColor = Color.fromRGBO(173, 53, 158, 1);
 const Color darkerMainColor = Color.fromRGBO(131, 38, 118, 1);
 const Color lighterMainColor = Color.fromRGBO(140, 90, 207, 1);
-const Color lightestPurle = Color.fromRGBO(210, 179, 251, 1);
+const Color lightestPurple = Color.fromRGBO(244, 182, 236, 0.474);
 const Color accentColorOrange = Color.fromRGBO(255, 165, 45, 1);
 const Color accentColorAqua = Color.fromRGBO(151, 242, 233, 1);
 const Color accentColorPurle = Color.fromRGBO(143, 157, 255, 1);

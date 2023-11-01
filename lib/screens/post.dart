@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
@@ -6,6 +7,7 @@ import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
 import 'package:soundgrade/data/songs.dart';
+import 'package:soundgrade/widgets/playlist_dialog.dart';
 
 class Review {
   final String profileImageUrl;
@@ -29,73 +31,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  int? selectedPlaylist = 1;
-
-  void _showDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'My Playlists',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-                ),
-                Divider(),
-                RadioListTile<int>(
-                  title: Text('Playlist 1'),
-                  value: 1,
-                  groupValue: selectedPlaylist,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedPlaylist = value;
-                    });
-                  },
-                ),
-                RadioListTile<int>(
-                  title: Text('Playlist 2'),
-                  value: 2,
-                  groupValue: selectedPlaylist,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedPlaylist = value;
-                    });
-                  },
-                ),
-                RadioListTile<int>(
-                  title: Text('Playlist 3'),
-                  value: 3,
-                  groupValue: selectedPlaylist,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedPlaylist = value;
-                    });
-                  },
-                ),
-                Divider(),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                    child: Text('Close'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  int selectedPlaylist = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +63,15 @@ class _PostPageState extends State<PostPage> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Color.fromARGB(255, 103, 28, 112),
+        toolbarHeight: 70,
+        backgroundColor: mainColor,
         title: CustomSearchBar(),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 10),
             Container(
               width: screenWidth,
               height: imageHeight,
@@ -161,8 +98,12 @@ class _PostPageState extends State<PostPage> {
                         SizedBox(height: 8.0),
                         Row(
                           children: [
-                            Text('Rating: ${widget.songInfo.rating}'),
-                            Icon(Icons.star, color: Colors.yellow, size: 16.0),
+                            for (var i = 0; i < widget.songInfo.rating; i++)
+                              Icon(Icons.favorite,
+                                  color: lightestPurple, size: 25.0),
+                            for (var i = widget.songInfo.rating; i < 5; i++)
+                              Icon(Icons.heart_broken_outlined,
+                                  color: lightestPurple, size: 25.0),
                           ],
                         ),
                       ],
@@ -173,7 +114,17 @@ class _PostPageState extends State<PostPage> {
                   ),
                   FloatingActionButton(
                     onPressed: () {
-                      _showDialog(context);
+                      showDialog<int>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return PlaylistDialogWidget();
+                        },
+                      ).then((selected) {
+                        if (selected != null) {
+                          print('Selected Playlist: $selected');
+                          // Handle the selected playlist value as needed
+                        }
+                      });
                     },
                     child: Icon(Icons.add),
                   ),
@@ -196,6 +147,8 @@ class _PostPageState extends State<PostPage> {
                           decoration: InputDecoration(
                             hintText: 'Write your review...',
                             border: InputBorder.none,
+                            contentPadding:
+                                EdgeInsets.symmetric(vertical: 30.0),
                           ),
                         ),
                       ),
@@ -221,8 +174,9 @@ class _PostPageState extends State<PostPage> {
             ),
             // Display reviews as separate cards
             ...reviews.map((review) => Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    color: Color.fromARGB(255, 245, 251, 255),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
@@ -235,16 +189,19 @@ class _PostPageState extends State<PostPage> {
                                     AssetImage(review.profileImageUrl),
                               ),
                               SizedBox(width: 8.0),
-                              Text(
-                                  'User Name'), // You can replace this with the actual user's name
+                              Text('User Name'),
                             ],
                           ),
                           SizedBox(height: 8.0),
                           Row(
                             children: [
-                              Text('Rating: ${review.rating}'),
-                              Icon(Icons.star,
-                                  color: Colors.yellow, size: 16.0),
+                              Text('Rating: '),
+                              for (var i = 0; i < review.rating; i++)
+                                Icon(Icons.favorite,
+                                    color: lightestPurple, size: 20.0),
+                              for (var i = review.rating; i < 5; i++)
+                                Icon(Icons.heart_broken_outlined,
+                                    color: lightestPurple, size: 20.0),
                             ],
                           ),
                           SizedBox(height: 8.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/utils/style.dart';
 
 class BottomNavbar extends StatelessWidget {
   final int currentIndex;
@@ -12,7 +13,7 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Color.fromARGB(255, 103, 28, 112),
+      backgroundColor: mainColor,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white.withOpacity(0.5),
       currentIndex: currentIndex,

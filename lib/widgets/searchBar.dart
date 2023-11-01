@@ -7,7 +7,7 @@ class CustomSearchBar extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           horizontal: 15.0), // Adjust horizontal margin for width
       padding: EdgeInsets.only(
-          top: 6.0, bottom: 6.0), // Adjust top and bottom padding for height
+          top: 2.0, bottom: 2.0), // Adjust top and bottom padding for height
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.0),

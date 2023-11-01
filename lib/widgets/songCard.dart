@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soundgrade/screens/post.dart'; // Import your PostPage.dart
+import 'package:soundgrade/screens/post.dart';
 import 'package:soundgrade/data/songs.dart';
+import 'package:soundgrade/utils/style.dart';
 
 class SongCard extends StatelessWidget {
   final Song songInfo;
@@ -24,11 +25,16 @@ class SongCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: Colors.white,
+              color: lightestPurple,
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                songInfo.rater,
-                style: TextStyle(color: Colors.black),
+              child: Row(
+                children: [
+                  Text(
+                    songInfo.rater,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Text(" rated:")
+                ],
               ),
             ),
             Image.asset(
