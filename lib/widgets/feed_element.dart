@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class FeedElement extends StatelessWidget {
-  String heading = "White pony";
-  String subheading = "Deftones";
-  String imagePath = "";
-  String user = "curti666";
-  String review = "";
+  final String heading = "White pony";
+  final String subheading = "Deftones";
+  final String imagePath = "";
+  final String user = "curti666";
+  final String review = "";
 
-  FeedElement({super.key});
+  const FeedElement({super.key});
 
   @override
   Widget build(BuildContext context) {
