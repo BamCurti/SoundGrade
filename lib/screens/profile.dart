@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
@@ -5,9 +6,32 @@ import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/playlists.dart';
+import 'package:soundgrade/utils/camera.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  CameraController? controller;
+  String imagePath = "";
+
+  @override
+  void initState() {
+    var cameras = getCameras();
+    // TODO: implement initState
+    super.initState();
+    controller = CameraController(cameras![1], ResolutionPreset.max);
+    controller?.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +62,16 @@ class ProfilePage extends StatelessWidget {
                   right: 10,
                   child: IconButton(
                     icon: Icon(Icons.edit),
-                    onPressed: () {
+                    onPressed: () async {
                       // Add logic for changing profile picture
+                      try {
+                        final image = await controller!.takePicture();
+                        setState(() {
+                          imagePath = image.path;
+                        });
+                      } catch (e) {
+                        print(e);
+                      }
                     },
                   ),
                 ),

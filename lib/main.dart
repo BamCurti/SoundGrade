@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/screens/login.dart';
+import 'package:soundgrade/utils/camera.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initCameras();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
