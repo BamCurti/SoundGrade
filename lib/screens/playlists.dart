@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/screens/profile.dart';
+import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
+import 'package:soundgrade/screens/feed.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
@@ -10,8 +13,8 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Color.fromARGB(255, 103, 28, 112),
+        toolbarHeight: 70,
+        backgroundColor: mainColor,
         title: CustomSearchBar(),
       ),
       body: Column(
@@ -37,7 +40,7 @@ class ListPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavbar(
-        currentIndex: 0,
+        currentIndex: 1,
         onTap: (index) {
           switch (index) {
             case 0:
@@ -49,19 +52,19 @@ class ListPage extends StatelessWidget {
             case 1:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => ListPage()),
               );
               break;
             case 2:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => ProfilePage()),
               );
               break;
             default:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => MainPage()),
               );
               break;
           }

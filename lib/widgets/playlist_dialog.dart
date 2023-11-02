@@ -19,7 +19,7 @@ class _PlaylistDialogWidgetState extends State<PlaylistDialogWidget> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Choose Playlist",
+              "Add to Playlist",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Divider(thickness: 2),

@@ -252,7 +252,7 @@ class _PostPageState extends State<PostPage> {
             default:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => MainPage()),
               );
               break;
           }

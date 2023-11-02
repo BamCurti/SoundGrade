@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 70,
         backgroundColor: mainColor,
         title: CustomSearchBar(),
       ),

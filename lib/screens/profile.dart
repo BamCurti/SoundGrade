@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
@@ -12,8 +13,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
-        backgroundColor: Color.fromRGBO(103, 28, 112, 1),
+        toolbarHeight: 70,
+        backgroundColor: mainColor,
         title: CustomSearchBar(),
       ),
       body: Center(
@@ -129,7 +130,7 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavbar(
-        currentIndex: 0,
+        currentIndex: 2,
         onTap: (index) {
           switch (index) {
             case 0:
@@ -153,7 +154,7 @@ class ProfilePage extends StatelessWidget {
             default:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => MainPage()),
               );
               break;
           }

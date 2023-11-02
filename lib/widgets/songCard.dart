@@ -20,20 +20,24 @@ class SongCard extends StatelessWidget {
         );
       },
       child: Card(
+        color: Color.fromARGB(255, 240, 246, 251),
         margin: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: lightestPurple,
+              color: Color.fromARGB(255, 219, 237, 251),
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Text(
                     songInfo.rater,
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                  Text(" rated:")
+                  Text(" rated:",
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -46,17 +50,33 @@ class SongCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    songInfo.title,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8.0),
-                  Text('Artist: ${songInfo.artist}'),
-                  SizedBox(height: 8.0),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Rating: ${songInfo.rating}'),
-                      Icon(Icons.star, color: Colors.yellow, size: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              songInfo.title,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 8.0),
+                            Text('Artist: ${songInfo.artist}'),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          for (var i = 0; i < songInfo.rating; i++)
+                            Icon(Icons.favorite,
+                                color: lightestPurple, size: 20.0),
+                          for (var i = songInfo.rating; i < 5; i++)
+                            Icon(Icons.heart_broken_outlined,
+                                color: lightestPurple, size: 20.0),
+                        ],
+                      ),
                     ],
                   ),
                 ],
@@ -70,34 +90,35 @@ class SongCard extends StatelessWidget {
 }
 
 class SongList extends StatelessWidget {
-  const SongList({super.key});
+  const SongList({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: readDummySongs(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text("${snapshot.error}"),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text("No data available"),
-            );
-          } else {
-            final data = snapshot.data;
-            return ListView.builder(
-              itemCount: data!.length,
-              itemBuilder: (context, index) {
-                return SongCard(songInfo: data[index]);
-              },
-            );
-          }
-        });
+      future: readDummySongs(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text("${snapshot.error}"),
+          );
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(
+            child: Text("No data available"),
+          );
+        } else {
+          final data = snapshot.data;
+          return ListView.builder(
+            itemCount: data!.length,
+            itemBuilder: (context, index) {
+              return SongCard(songInfo: data[index]);
+            },
+          );
+        }
+      },
+    );
   }
 }
