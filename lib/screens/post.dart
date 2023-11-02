@@ -8,6 +8,7 @@ import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
 import 'package:soundgrade/data/songs.dart';
 import 'package:soundgrade/widgets/playlist_dialog.dart';
+import 'package:soundgrade/widgets/rate_dialog.dart';
 
 class Review {
   final String profileImageUrl;
@@ -32,6 +33,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   int selectedPlaylist = 2;
+  int selectedRating = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +147,7 @@ class _PostPageState extends State<PostPage> {
                         padding: const EdgeInsets.only(left: 16.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Write your review...',
+                            hintText: 'Write your review and rate...',
                             border: InputBorder.none,
                             contentPadding:
                                 EdgeInsets.symmetric(vertical: 30.0),
@@ -158,6 +160,16 @@ class _PostPageState extends State<PostPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           // Handle the post action
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Rate this song'),
+                                content:
+                                    FavoriteIconsDialog(), // Calling the separate widget
+                              );
+                            },
+                          );
                         },
                         child: Text('Post'),
                       ),
@@ -166,6 +178,7 @@ class _PostPageState extends State<PostPage> {
                 ),
               ),
             ),
+
             Container(
               color: Colors.grey,
               height: 1.0,
