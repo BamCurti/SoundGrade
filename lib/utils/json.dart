@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-Future<List<Map<String, dynamic>>> getDummyData(String path) async {
+Future<List<Map<String, dynamic>>> getJsonListData(String path) async {
   final input = await rootBundle.loadString(path);
-  final map = List<Map<String, dynamic>>.from(json.decode(input));
+  final listMap = List<Map<String, dynamic>>.from(json.decode(input));
+  return listMap;
+}
+
+Future<Map<String, dynamic>> getJsonData(String path) async {
+  final input = await rootBundle.loadString(path);
+  final map = Map<String, dynamic>.from(json.decode(input));
   return map;
 }
