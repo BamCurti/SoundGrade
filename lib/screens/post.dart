@@ -7,20 +7,9 @@ import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
 import 'package:soundgrade/data/songs.dart';
+import 'package:soundgrade/data/rateable.dart';
 import 'package:soundgrade/widgets/playlist_dialog.dart';
 import 'package:soundgrade/widgets/rate_dialog.dart';
-
-class Review {
-  final String profileImageUrl;
-  final int rating;
-  final String review;
-
-  Review({
-    required this.profileImageUrl,
-    required this.rating,
-    required this.review,
-  });
-}
 
 class PostPage extends StatefulWidget {
   final Song songInfo;
@@ -32,36 +21,28 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  List<Rateable> reviews = [];
+
   int selectedPlaylist = 2;
   int selectedRating = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReviews();
+  }
+
+  void _loadReviews() async {
+    List<Rateable> rateables = await readDummyRateable();
+    setState(() {
+      reviews = rateables;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double imageHeight = screenWidth * 0.6;
-
-    List<Review> reviews = [
-      Review(
-        profileImageUrl: 'assets/profile1.png',
-        rating: 5,
-        review: 'This song is amazing! Highly recommend.',
-      ),
-      Review(
-        profileImageUrl: 'assets/profile2.png',
-        rating: 4,
-        review: 'Good song, but could be better.',
-      ),
-      Review(
-        profileImageUrl: 'assets/profile3.png',
-        rating: 3,
-        review: 'Average song, nothing special.',
-      ),
-      Review(
-        profileImageUrl: 'assets/profile4.png',
-        rating: 2,
-        review: 'Not a fan of this song.',
-      ),
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -186,7 +167,7 @@ class _PostPageState extends State<PostPage> {
               margin: EdgeInsets.symmetric(vertical: 8.0),
             ),
             // Display reviews as separate cards
-            ...reviews.map((review) => Padding(
+            ...reviews.map((rateable) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
                     color: Color.fromARGB(255, 245, 251, 255),
@@ -198,27 +179,27 @@ class _PostPageState extends State<PostPage> {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage:
-                                    AssetImage(review.profileImageUrl),
-                              ),
+                                  //backgroundImage:
+                                  //AssetImage(rateable.profileImageUrl),
+                                  ),
                               SizedBox(width: 8.0),
-                              Text('User Name'),
+                              Text(rateable.username),
                             ],
                           ),
                           SizedBox(height: 8.0),
                           Row(
                             children: [
                               Text('Rating: '),
-                              for (var i = 0; i < review.rating; i++)
+                              for (var i = 0; i < rateable.rating; i++)
                                 Icon(Icons.favorite,
                                     color: lightestPurple, size: 20.0),
-                              for (var i = review.rating; i < 5; i++)
+                              for (var i = rateable.rating; i < 5; i++)
                                 Icon(Icons.heart_broken_outlined,
                                     color: lightestPurple, size: 20.0),
                             ],
                           ),
                           SizedBox(height: 8.0),
-                          Text(review.review),
+                          Text(rateable.review),
                         ],
                       ),
                     ),
