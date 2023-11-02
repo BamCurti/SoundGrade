@@ -64,6 +64,7 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/dummy/songs.json
+    - assets/dummy/users.json
     - lib/assets/images/
     
 
