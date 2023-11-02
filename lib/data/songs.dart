@@ -8,6 +8,7 @@ class Song {
   final String artist;
   final int rating;
   final String imageUrl;
+  final String uuid;
 
   Song({
     required this.rater,
@@ -15,17 +16,18 @@ class Song {
     required this.artist,
     required this.rating,
     required this.imageUrl,
+    required this.uuid,
   });
 
   factory Song.fromJson(Map<dynamic, dynamic> json) {
     try {
       return Song(
-        rater: json['rater'] as String,
-        title: json['title'] as String,
-        artist: json['artist'] as String,
-        rating: json['rating'] as int,
-        imageUrl: json['imageUrl'] as String,
-      );
+          rater: json['rater'] as String,
+          title: json['title'] as String,
+          artist: json['artist'] as String,
+          rating: json['rating'] as int,
+          imageUrl: json['imageUrl'] as String,
+          uuid: json['uuid'] as String);
     } catch (e) {
       throw const FormatException();
     }
@@ -33,6 +35,6 @@ class Song {
 }
 
 Future<List<Song>> readDummySongs() async {
-  final songs = await getDummyData(songPath);
+  final songs = await getJsonListData(songPath);
   return songs.map((song) => Song.fromJson(song)).toList();
 }
