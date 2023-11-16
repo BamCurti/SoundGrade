@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 // Color palette
-const Color mainColor = Color.fromRGBO(173, 53, 158, 1);
+const Color mainColor = Color.fromRGBO(200, 79, 184, 1);
 const Color darkerMainColor = Color.fromRGBO(131, 38, 118, 1);
+const Color darktethememain = Color.fromARGB(255, 57, 20, 52);
 const Color lighterMainColor = Color.fromRGBO(140, 90, 207, 1);
 const Color lightestPurple = Color.fromRGBO(244, 182, 236, 0.474);
-const Color accentColorOrange = Color.fromRGBO(255, 165, 45, 1);
-const Color accentColorAqua = Color.fromRGBO(151, 242, 233, 1);
+const Color accentColorOrange = Color.fromRGBO(45, 241, 255, 1);
+const Color accentColorAqua = Color.fromARGB(255, 150, 198, 215);
 const Color accentColorPurle = Color.fromRGBO(143, 157, 255, 1);
 const Color darkGrey = Color.fromRGBO(89, 88, 85, 1);
 const Color lightGrey = Color.fromRGBO(164, 162, 156, 1);
@@ -28,7 +29,7 @@ ThemeData mainTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  primaryColor: darkerMainColor,
+  primaryColor: darktethememain,
   brightness: Brightness.dark,
   scaffoldBackgroundColor: backgroundDarkColor,
   textTheme: const TextTheme().apply(bodyColor: backgroundLightColor),

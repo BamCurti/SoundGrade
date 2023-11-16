@@ -5,8 +5,9 @@ import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
-import 'package:soundgrade/widgets/playlist.dart';
+import 'package:soundgrade/widgets/playlistDetails.dart';
 import 'package:soundgrade/data/playlist.dart';
+import 'package:soundgrade/widgets/createPlaylistDialog.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
@@ -26,7 +27,8 @@ class ListPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
-                // Add your create new list button functionality here
+                _showCreateListDialog(
+                    context); // Call the function to show the dialog
               },
               child: Text('Create New List'),
             ),
@@ -40,7 +42,7 @@ class ListPage extends StatelessWidget {
             case 0:
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => MainPage()),
               );
               break;
             case 1:
@@ -64,6 +66,15 @@ class ListPage extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  void _showCreateListDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CreateListDialog();
+      },
     );
   }
 }
@@ -90,17 +101,5 @@ class SongListFetcher extends StatelessWidget {
               itemCount: data.length,
               itemBuilder: (context, index) => PlaylistCard(data: data[index]));
         });
-  }
-}
-
-class PlayListDetailPage extends StatelessWidget {
-  final PlayListData data;
-  const PlayListDetailPage({super.key, required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(data.name)),
-    );
   }
 }

@@ -192,10 +192,13 @@ class _PostPageState extends State<PostPage> {
                               Text('Rating: '),
                               for (var i = 0; i < rateable.rating; i++)
                                 Icon(Icons.favorite,
-                                    color: lightestPurple, size: 20.0),
+                                    color: const Color.fromARGB(
+                                        255, 230, 141, 134),
+                                    size: 20.0),
                               for (var i = rateable.rating; i < 5; i++)
                                 Icon(Icons.heart_broken_outlined,
-                                    color: lightestPurple, size: 20.0),
+                                    color: Color.fromARGB(255, 230, 141, 134),
+                                    size: 20.0),
                             ],
                           ),
                           SizedBox(height: 8.0),

@@ -19,18 +19,45 @@ class _ProfilePageState extends State<ProfilePage> {
   CameraController? controller;
   String imagePath = "";
 
-  @override
-  void initState() {
-    var cameras = getCameras();
-    // TODO: implement initState
-    super.initState();
-    controller = CameraController(cameras![1], ResolutionPreset.max);
-    controller?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
+  void _showChangeDialog(String title, String hintText) {
+    TextEditingController _textEditingController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Divider(color: Colors.grey),
+              TextFormField(
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                  hintText: hintText,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                // Add logic to save the new email/password
+                String newEmailOrPassword = _textEditingController.text;
+                // Add your save logic here
+
+                // Close the dialog
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -77,68 +104,69 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 35),
             Text(
               'Username',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             Text(
               'user123@test.com',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 50),
-            // Settings Button
-            ElevatedButton(
-              onPressed: () {
-                // Add logic for Settings button
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: SizedBox(
-                width: 200,
-                height: 50,
-                child: Center(child: Text('Settings')),
-              ),
-            ),
+
             SizedBox(height: 20),
             // Change Email Button
             ElevatedButton(
               onPressed: () {
-                // Add logic for Change Email button
+                _showChangeDialog('Change Email', 'Enter new email');
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
+                padding: EdgeInsets.all(16),
               ),
               child: SizedBox(
                 width: 200,
-                height: 50,
-                child: Center(child: Text('Change Email')),
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Change Email',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 35),
             // Change Password Button
             ElevatedButton(
               onPressed: () {
-                // Add logic for Change Password button
+                _showChangeDialog('Change Password', 'Enter new password');
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
+                padding: EdgeInsets.all(16),
               ),
               child: SizedBox(
                 width: 200,
-                height: 50,
-                child: Center(child: Text('Change Password')),
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Change Password',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
               ),
             ),
-            Spacer(), // Add spacer to push the logout button to the bottom
+            Spacer(),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -153,7 +181,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: SizedBox(
                   height: 50,
                   child: Center(
-                    child: Text('Log Out'),
+                    child: TextButton(
+                      onPressed: () {
+                        // Navigate to another screen when the button is pressed
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: Text(
+                        'Log Out',
+                        style: TextStyle(
+                          color: darktethememain,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

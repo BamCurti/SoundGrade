@@ -6,10 +6,8 @@ import 'package:soundgrade/utils/style.dart';
 
 class SongCard extends StatelessWidget {
   final Song songInfo;
-  
 
   SongCard({required this.songInfo});
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +71,10 @@ class SongCard extends StatelessWidget {
                       Row(
                         children: [
                           for (var i = 0; i < songInfo.rating; i++)
-                            Icon(Icons.favorite,
-                                color: lightestPurple, size: 20.0),
+                            Icon(Icons.favorite, color: Colors.red, size: 20.0),
                           for (var i = songInfo.rating; i < 5; i++)
                             Icon(Icons.heart_broken_outlined,
-                                color: lightestPurple, size: 20.0),
+                                color: Colors.red, size: 20.0),
                         ],
                       ),
                     ],

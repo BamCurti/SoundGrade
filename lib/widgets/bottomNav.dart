@@ -24,8 +24,8 @@ class BottomNavbar extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Lists',
+          icon: Icon(Icons.library_music),
+          label: 'Playlists',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
