@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:soundgrade/firebase_options.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/utils/camera.dart';
@@ -6,6 +8,7 @@ import 'package:soundgrade/utils/camera.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initCameras();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
