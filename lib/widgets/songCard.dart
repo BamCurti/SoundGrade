@@ -11,6 +11,10 @@ class SongCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+    SongInfoContainerStyle containerStyle = theme.brightness == Brightness.light
+        ? lightSongInfoContainerStyle
+        : darkSongInfoContainerStyle;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -21,24 +25,27 @@ class SongCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: Color.fromARGB(255, 240, 246, 251),
+        color: theme.cardTheme.color,
         margin: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: Color.fromARGB(255, 240, 246, 251),
+              color: containerStyle.backgroundColor,
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Text(
                     songInfo.rater,
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                        color: containerStyle.textColor,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(" rated:",
                       style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: containerStyle.textColor,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ],
               ),
             ),

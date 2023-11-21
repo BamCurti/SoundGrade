@@ -5,6 +5,9 @@ import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/feed.dart';
+import 'package:provider/provider.dart';
+import 'package:soundgrade/utils/theme_notifier.dart';
+import 'package:soundgrade/utils/style.dart';
 
 class PlaylistCard extends StatelessWidget {
   final PlayListData data;
@@ -76,62 +79,70 @@ class PlayListDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(data.name),
-      ),
-      body: Column(
-        children: [
-          Image.network(data.imageUrl,
-              fit: BoxFit.cover, height: 230, width: 460),
-          Divider(color: Colors.grey),
-          Expanded(
-            child: ListView.builder(
-              itemCount: data.songsId.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.music_video_sharp),
-                      title: Text(
-                        data.name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(data.name),
-                    ),
-                    Divider(color: Colors.grey),
-                  ],
-                );
-              },
-            ),
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(data.name),
+            backgroundColor:
+                themeNotifier.isLightMode ? mainColor : darkerMainColor,
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavbar(
-        currentIndex: 1,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MainPage()),
-              );
-              break;
-            case 1:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ListPage()),
-              );
-              break;
-            case 2:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-              break;
-          }
-        },
-      ),
+          body: Column(
+            children: [
+              Image.network(data.imageUrl,
+                  fit: BoxFit.cover, height: 230, width: 460),
+              Divider(color: Colors.grey),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: data.songsId.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.music_video_sharp),
+                          title: Text(
+                            data.name,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(data.name),
+                        ),
+                        Divider(color: Colors.grey),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          bottomNavigationBar: BottomNavbar(
+            currentIndex: 1,
+            onTap: (index) {
+              switch (index) {
+                case 0:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
+                  break;
+                case 1:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListPage()),
+                  );
+                  break;
+                case 2:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                  break;
+                case 3:
+                  break;
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }

@@ -8,64 +8,74 @@ import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/widgets/playlistDetails.dart';
 import 'package:soundgrade/data/playlist.dart';
 import 'package:soundgrade/widgets/createPlaylistDialog.dart';
+import 'package:provider/provider.dart';
+import 'package:soundgrade/utils/theme_notifier.dart';
+import 'package:soundgrade/utils/style.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: mainColor,
-        title: CustomSearchBar(),
-      ),
-      body: Column(
-        children: [
-          const Expanded(child: SongListFetcher()),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                _showCreateListDialog(
-                    context); // Call the function to show the dialog
-              },
-              child: Text('Create New List'),
-            ),
+    return Consumer<ThemeNotifier>(
+      builder: (context, themeNotifier, child) {
+        return Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 70,
+            backgroundColor:
+                themeNotifier.isLightMode ? mainColor : darkerMainColor,
+            title: CustomSearchBar(),
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavbar(
-        currentIndex: 1,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MainPage()),
-              );
-              break;
-            case 1:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ListPage()),
-              );
-              break;
-            case 2:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-              break;
-            default:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MainPage()),
-              );
-              break;
-          }
-        },
-      ),
+          body: Column(
+            children: [
+              const Expanded(child: SongListFetcher()),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _showCreateListDialog(
+                        context); // Call the function to show the dialog
+                  },
+                  child: Text('Create New List'),
+                ),
+              ),
+            ],
+          ),
+          bottomNavigationBar: BottomNavbar(
+            currentIndex: 1,
+            onTap: (index) {
+              switch (index) {
+                case 0:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
+                  break;
+                case 1:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListPage()),
+                  );
+                  break;
+                case 2:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                  break;
+                case 3:
+                  break;
+                default:
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
+                  break;
+              }
+            },
+          ),
+        );
+      },
     );
   }
 
