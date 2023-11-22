@@ -6,13 +6,15 @@ import 'package:soundgrade/utils/style.dart';
 
 class SongCard extends StatelessWidget {
   final Song songInfo;
-  
 
   SongCard({required this.songInfo});
 
-
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+    SongInfoContainerStyle containerStyle = theme.brightness == Brightness.light
+        ? lightSongInfoContainerStyle
+        : darkSongInfoContainerStyle;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -23,24 +25,27 @@ class SongCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: Color.fromARGB(255, 240, 246, 251),
+        color: theme.cardTheme.color,
         margin: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: Color.fromARGB(255, 240, 246, 251),
+              color: containerStyle.backgroundColor,
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Text(
                     songInfo.rater,
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                        color: containerStyle.textColor,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(" rated:",
                       style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: containerStyle.textColor,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ],
               ),
             ),
@@ -73,11 +78,10 @@ class SongCard extends StatelessWidget {
                       Row(
                         children: [
                           for (var i = 0; i < songInfo.rating; i++)
-                            Icon(Icons.favorite,
-                                color: lightestPurple, size: 20.0),
+                            Icon(Icons.favorite, color: Colors.red, size: 20.0),
                           for (var i = songInfo.rating; i < 5; i++)
                             Icon(Icons.heart_broken_outlined,
-                                color: lightestPurple, size: 20.0),
+                                color: Colors.red, size: 20.0),
                         ],
                       ),
                     ],
