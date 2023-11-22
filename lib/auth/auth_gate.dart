@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:soundgrade/widgets/title.dart';
 import 'package:soundgrade/screens/feed.dart';
 
+// Firebase config
+import 'package:soundgrade/firebase_options.dart';
+
 // Auth packages
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -123,7 +127,10 @@ class AuthGate extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return SignInScreen(
-              providers: [EmailAuthProvider()],
+              providers: [
+                EmailAuthProvider(),
+                GoogleProvider(clientId: webClientId)
+              ],
               headerBuilder: (context, constraints, shrinkOffset) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),

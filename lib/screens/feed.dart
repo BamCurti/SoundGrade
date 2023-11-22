@@ -25,25 +25,26 @@ class MainPage extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MainPage()),
               );
               break;
             case 1:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ListPage()),
               );
               break;
             case 2:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
+                MaterialPageRoute(
+                    builder: (context) => const ProfileTemporaryPage()),
               );
               break;
             default:
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => LoginPage()),
               );

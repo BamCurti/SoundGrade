@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
@@ -19,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   CameraController? controller;
   String imagePath = "";
 
-  @override
+/*  @override
   void initState() {
     var cameras = getCameras();
     // TODO: implement initState
@@ -31,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
       }
       setState(() {});
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   backgroundColor: Colors.blue,
                 ),
-                Positioned(
+/*                Positioned(
                   bottom: 10,
                   right: 10,
                   child: IconButton(
@@ -74,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       }
                     },
                   ),
-                ),
+                ),*/
               ],
             ),
             SizedBox(height: 20),
@@ -192,6 +193,22 @@ class _ProfilePageState extends State<ProfilePage> {
           }
         },
       ),
+    );
+  }
+}
+
+class ProfileTemporaryPage extends StatelessWidget {
+  const ProfileTemporaryPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ProfileScreen(
+      appBar: AppBar(),
+      actions: [
+        SignedOutAction((context) {
+          Navigator.of(context).pop();
+        })
+      ],
     );
   }
 }
