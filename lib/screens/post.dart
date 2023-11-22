@@ -45,6 +45,7 @@ class _PostPageState extends State<PostPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double imageHeight = screenWidth * 0.6;
+    ThemeData theme = Theme.of(context);
 
     return Consumer<ThemeNotifier>(
       builder: (context, themeNotifier, child) {
@@ -175,7 +176,7 @@ class _PostPageState extends State<PostPage> {
                 ...reviews.map((rateable) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
-                        color: Color.fromARGB(255, 245, 251, 255),
+                        color: theme.cardTheme.color,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
