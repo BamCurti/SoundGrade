@@ -1,5 +1,5 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
@@ -34,17 +34,22 @@ class _ProfilePageState extends State<ProfilePage> {
             title,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Divider(color: Colors.grey),
-              TextFormField(
-                controller: _textEditingController,
-                decoration: InputDecoration(
-                  hintText: hintText,
-                ),
+          content: SingleChildScrollView(
+            child: Container(
+              width: 300, // Set a fixed width for the dialog
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Divider(color: Colors.grey),
+                  TextFormField(
+                    controller: _textEditingController,
+                    decoration: InputDecoration(
+                      hintText: hintText,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
           actions: [
             ElevatedButton(
@@ -77,7 +82,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 35),
                 Stack(
@@ -122,58 +126,61 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(height: 50),
-
                 SizedBox(height: 20),
-                // Change Email Button
-                ElevatedButton(
-                  onPressed: () {
-                    _showChangeDialog('Change Email', 'Enter new email');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    padding: EdgeInsets.all(16),
-                  ),
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        'Change Email',
-                        style: TextStyle(
-                          fontSize: 18,
+                Expanded(
+                  child: ListView(
+                    children: [
+                      // Change Email Button
+                      Container(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _showChangeDialog(
+                                'Change Email', 'Enter new email');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: EdgeInsets.all(16),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Change Email',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 35),
-                // Change Password Button
-                ElevatedButton(
-                  onPressed: () {
-                    _showChangeDialog('Change Password', 'Enter new password');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    padding: EdgeInsets.all(16),
-                  ),
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        'Change Password',
-                        style: TextStyle(
-                          fontSize: 18,
+                      SizedBox(height: 15),
+                      // Change Password Button
+                      Container(
+                        width: 150, // Set the desired width
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _showChangeDialog(
+                                'Change Password', 'Enter new password');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            padding: EdgeInsets.all(16),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Change Password',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                Spacer(),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -248,4 +255,4 @@ class _ProfilePageState extends State<ProfilePage> {
       },
     );
   }
-}  // Add this closing parenthesis
+}
