@@ -5,6 +5,10 @@ class SoundGradeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('lib/assets/images/logo.png');
+    return Image.asset(
+      'lib/assets/images/logo.png',
+      width: 300,
+      height: 300,
+    );
   }
 }

@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:soundgrade/firebase_options.dart';
 import 'package:soundgrade/utils/style.dart';
-import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/utils/camera.dart';
+import 'package:soundgrade/auth/auth_gate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Material App',
+        title: 'SoundGrade',
         theme: mainTheme,
         darkTheme: darkTheme,
-        home: const LoginPage());
+        home: const AuthGate());
   }
 }
