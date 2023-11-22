@@ -5,10 +5,13 @@ class SoundGradeTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'lib/assets/images/logo.png',
-      width: 300,
-      height: 300,
+    return AspectRatio(
+      aspectRatio: 1,
+      child: Image.asset(
+        'lib/assets/images/logo.png',
+        width: 300,
+        height: 300,
+      ),
     );
   }
 }
