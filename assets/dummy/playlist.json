@@ -4,5 +4,23 @@
         "id": "1",
         "imageUrl": "https://tecolotito.elsiglodetorreon.com.mx/i/2023/10/1731976.jpeg",
         "songsId": ["1", "2", "3", "4", "5", "6"]
+    },
+    {
+        "name": "Rap",
+        "id": "2",
+        "imageUrl": "https://www.billboard.com/wp-content/uploads/media/Tyler-The-Creator-press-by-Sam-Rock-2019-billboard-1548.jpg",
+        "songsId": ["1", "2", "3", "4", "5", "6"]
+    },
+    {
+        "name": "Viva la cumbia",
+        "id": "3",
+        "imageUrl": "https://www.mexicodesconocido.com.mx/wp-content/uploads/2022/04/7.jpg",
+        "songsId": ["1", "2", "3", "4", "5", "6"]
+    },
+    {
+        "name": "Canciones favoritas",
+        "id": "4",
+        "imageUrl": "https://indierocks.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/bfi_thumb/Pink-Floyd-51cnup8g1azfiw3qlqtgdtygveungw8dqh3a155y7u22nc3h00hrew1eqkwuo0.jpg",
+        "songsId": ["1", "2", "3", "4", "5", "6"]
     }
 ]

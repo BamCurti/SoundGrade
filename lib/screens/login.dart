@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/title.dart';
 import 'package:soundgrade/screens/feed.dart';
 
@@ -19,8 +20,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          //title: _isLoginForm ? const Text('Login') : const Text('Sign Up'),
-          ),
+        //title: _isLoginForm ? const Text('Login') : const Text('Sign Up'),
+        backgroundColor: mainColor,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
