@@ -1,36 +1,47 @@
+import 'package:soundgrade/data/rateable.dart';
 import 'package:soundgrade/utils/json.dart';
+import 'package:soundgrade/services/firebase_service.dart';
 
 const String songPath = 'assets/dummy/songs.json';
 
-class Song {
-  final String rater;
-  final String title;
-  final String artist;
-  final int rating;
-  final String imageUrl;
-  final String uuid;
+const String songCollection = "songs";
+
+class Song extends FirebaseCollection {
+  static String collection = "songs";
+  String name;
+  String artist;
+  int rating;
+  String imageUrl;
+  String uuid;
+  List<Rate>? rates;
 
   Song({
-    required this.rater,
-    required this.title,
+    required this.name,
     required this.artist,
-    required this.rating,
+    this.rating = 0,
     required this.imageUrl,
     required this.uuid,
   });
 
   factory Song.fromJson(Map<dynamic, dynamic> json) {
+    Song? song;
     try {
-      return Song(
-          rater: json['rater'] as String,
-          title: json['title'] as String,
-          artist: json['artist'] as String,
-          rating: json['rating'] as int,
-          imageUrl: json['imageUrl'] as String,
-          uuid: json['uuid'] as String);
+      String name = json["name"] as String;
+      String artist = json["artist"] as String;
+      int rating = json["rating"] ?? 0;
+      String imageUrl = json["imageUrl"] as String;
+      String uuid = json["uuid"] as String;
+
+      song = Song(
+          name: name,
+          artist: artist,
+          rating: rating,
+          imageUrl: imageUrl,
+          uuid: uuid);
     } catch (e) {
       throw const FormatException();
     }
+    return song;
   }
 }
 
