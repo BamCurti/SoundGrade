@@ -13,12 +13,24 @@ class FirebaseCollection {
     }).toList();
   }
 
-  static Future<dynamic> getElement(String collection, String filter) async {
-    return;
+  static Future<dynamic> getElement(String collection, String uuid) async {
+    final doc = await db.collection(collection).doc(uuid).get();
+    if (!doc.exists) {
+      return;
+    }
+
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    data["uuid"] = uuid;
+    return data;
   }
 
-  static Future<dynamic> saveElement(
+  static Future<void> saveElement(
       String collection, Map<String, dynamic> data) async {
     await db.collection(collection).add(data);
+  }
+
+  static Future<void> updateElement(
+      String collection, String uuid, Map<String, dynamic> data) async {
+    await db.collection(collection).doc(uuid).set(data);
   }
 }
