@@ -12,4 +12,13 @@ class FirebaseCollection {
       return ref;
     }).toList();
   }
+
+  static Future<dynamic> getElement(String collection, String filter) async {
+    return;
+  }
+
+  static Future<dynamic> saveElement(
+      String collection, Map<String, dynamic> data) async {
+    await db.collection(collection).add(data);
+  }
 }

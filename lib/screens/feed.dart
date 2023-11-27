@@ -29,10 +29,6 @@ class MainPage extends StatelessWidget {
             onTap: (index) {
               switch (index) {
                 case 0:
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
-                  );
                   break;
                 case 1:
                   Navigator.pushReplacement(

@@ -1,13 +1,9 @@
 import 'package:soundgrade/data/rateable.dart';
-import 'package:soundgrade/utils/json.dart';
 import 'package:soundgrade/services/firebase_service.dart';
-
-const String songPath = 'assets/dummy/songs.json';
 
 const String songCollection = "songs";
 
-class Song extends FirebaseCollection {
-  static String collection = "songs";
+class Song {
   String name;
   String artist;
   int rating;
@@ -43,9 +39,4 @@ class Song extends FirebaseCollection {
     }
     return song;
   }
-}
-
-Future<List<Song>> readDummySongs() async {
-  final songs = await getJsonListData(songPath);
-  return songs.map((song) => Song.fromJson(song)).toList();
 }
