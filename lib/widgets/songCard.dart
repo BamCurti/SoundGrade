@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:soundgrade/screens/post.dart';
 import 'package:soundgrade/data/songs.dart';
 import 'package:soundgrade/data/rateable.dart';
+import 'package:soundgrade/services/firebase_service.dart';
 import 'package:soundgrade/utils/style.dart';
 
 class SongCard extends StatelessWidget {
@@ -36,7 +37,7 @@ class SongCard extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    songInfo.rater,
+                    "User",
                     style: TextStyle(
                         color: containerStyle.textColor,
                         fontWeight: FontWeight.bold),
@@ -49,7 +50,7 @@ class SongCard extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(
+            Image.network(
               songInfo.imageUrl,
               fit: BoxFit.cover,
             ),
@@ -67,7 +68,7 @@ class SongCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              songInfo.title,
+                              songInfo.name,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 8.0),
@@ -102,7 +103,7 @@ class SongList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: readDummySongs(),
+      future: FirebaseCollection.getList(songCollection),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -121,7 +122,7 @@ class SongList extends StatelessWidget {
           return ListView.builder(
             itemCount: data!.length,
             itemBuilder: (context, index) {
-              return SongCard(songInfo: data[index]);
+              return SongCard(songInfo: Song.fromJson(data[index]));
             },
           );
         }

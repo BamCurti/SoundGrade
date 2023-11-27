@@ -23,7 +23,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  List<Rateable> reviews = [];
+  List<Rate> reviews = [];
 
   int selectedPlaylist = 2;
   int selectedRating = 0;
@@ -35,7 +35,7 @@ class _PostPageState extends State<PostPage> {
   }
 
   void _loadReviews() async {
-    List<Rateable> rateables = await readDummyRateable();
+    List<Rate> rateables = await readDummyRateable();
     setState(() {
       reviews = rateables;
     });
@@ -64,7 +64,7 @@ class _PostPageState extends State<PostPage> {
                 Container(
                   width: screenWidth,
                   height: imageHeight,
-                  child: Image.asset(
+                  child: Image.network(
                     widget.songInfo.imageUrl,
                     fit: BoxFit.contain,
                   ),
@@ -79,7 +79,7 @@ class _PostPageState extends State<PostPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.songInfo.title,
+                              widget.songInfo.name,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 8.0),
