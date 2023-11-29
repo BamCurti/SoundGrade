@@ -8,9 +8,6 @@ import 'package:soundgrade/widgets/bottomNav.dart';
 import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/playlists.dart';
-import 'package:soundgrade/utils/style.dart';
-import 'package:soundgrade/utils/theme_notifier.dart';
-import 'package:soundgrade/utils/camera.dart';
 import 'package:soundgrade/utils/theme_notifier.dart';
 
 class ProfilePage extends StatefulWidget {

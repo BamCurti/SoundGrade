@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'package:soundgrade/data/user.dart';
-import 'package:soundgrade/data/songs.dart';
 import 'package:soundgrade/utils/json.dart';
 
 const String rateablePath = 'assets/dummy/rateable.json';

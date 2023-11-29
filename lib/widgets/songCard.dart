@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:soundgrade/screens/post.dart';
 import 'package:soundgrade/data/songs.dart';
-import 'package:soundgrade/data/rateable.dart';
-import 'package:soundgrade/services/firebase_service.dart';
 import 'package:soundgrade/utils/style.dart';
+import 'package:soundgrade/services/firebase/songs.dart';
 
 class SongCard extends StatelessWidget {
   final Song songInfo;
@@ -72,7 +71,7 @@ class SongCard extends StatelessWidget {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 8.0),
-                            Text('Artist: ${songInfo.artist}'),
+                            Text('Artist: ${songInfo.artist.name}'),
                           ],
                         ),
                       ),
@@ -103,7 +102,7 @@ class SongList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: FirebaseCollection.getList(songCollection),
+      future: SongCollection.getList(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
