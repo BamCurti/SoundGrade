@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundgrade/services/firebase/songs.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/songCard.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
@@ -111,39 +112,70 @@ class MainPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Add Song'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Song'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Artist'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Image'),
-              ),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                // Add your logic to handle the data entered in the dialog
-                Navigator.of(context).pop();
-              },
-              child: Text('Add'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-          ],
-        );
+        return AddSong();
       },
+    );
+  }
+}
+
+class AddSong extends StatefulWidget {
+  const AddSong({
+    super.key,
+  });
+
+  @override
+  State<AddSong> createState() => _AddSongState();
+}
+
+class _AddSongState extends State<AddSong> {
+  TextEditingController songController = TextEditingController(
+    text: "",
+  );
+  TextEditingController artistController = TextEditingController(text: "");
+  TextEditingController imageController = TextEditingController(text: "");
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Add Song'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            decoration: const InputDecoration(
+              labelText: 'Song',
+            ),
+            controller: songController,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Artist'),
+            controller: artistController,
+          ),
+          TextField(
+            decoration: const InputDecoration(labelText: 'Image'),
+            controller: imageController,
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            SongCollection.saveElement(
+              songController.text,
+              artistController.text,
+              imageController.text,
+            );
+            Navigator.of(context).pop();
+          },
+          child: Text('Add'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Cancel'),
+        ),
+      ],
     );
   }
 }

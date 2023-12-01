@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:soundgrade/services/firebase/firebase_service.dart';
 
 class ArtistCollection extends FirebaseCollection {
@@ -10,8 +11,20 @@ class ArtistCollection extends FirebaseCollection {
     return data;
   }
 
-  static Future<List<dynamic>> getList() async {
-    final data = await FirebaseCollection.getList(collection);
-    return data;
+  static Future<dynamic> getByName(String name) async {
+    final snapshot = FirebaseCollection.db
+        .collection(collection)
+        .where("name", isEqualTo: name);
+    final data = await snapshot.get();
+    if (data.docs.isEmpty) {
+      return;
+    }
+    return data.docs[0];
+  }
+
+  static Future<void> saveElement(String name) async {
+    await FirebaseCollection.saveElement(collection, {
+      "name": name,
+    });
   }
 }
