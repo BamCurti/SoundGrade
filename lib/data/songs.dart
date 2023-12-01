@@ -1,11 +1,11 @@
+import 'package:soundgrade/data/artist.dart';
 import 'package:soundgrade/data/rateable.dart';
-import 'package:soundgrade/services/firebase_service.dart';
 
 const String songCollection = "songs";
 
 class Song {
   String name;
-  String artist;
+  Artist artist;
   int rating;
   String imageUrl;
   String uuid;
@@ -23,7 +23,8 @@ class Song {
     Song? song;
     try {
       String name = json["name"] as String;
-      String artist = json["artist"] as String;
+      final rawArtist = json["artist"];
+      Artist artist = Artist.fromJson(rawArtist);
       int rating = json["rating"] ?? 0;
       String imageUrl = json["imageUrl"] as String;
       String uuid = json["uuid"] as String;
@@ -35,6 +36,7 @@ class Song {
           imageUrl: imageUrl,
           uuid: uuid);
     } catch (e) {
+      print(e);
       throw const FormatException();
     }
     return song;

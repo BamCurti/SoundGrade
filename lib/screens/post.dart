@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
-import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/screens/playlists.dart';
@@ -83,7 +82,7 @@ class _PostPageState extends State<PostPage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 8.0),
-                            Text('Artist: ${widget.songInfo.artist}'),
+                            Text('Artist: ${widget.songInfo.artist.name}'),
                             SizedBox(height: 8.0),
                             Row(
                               children: [

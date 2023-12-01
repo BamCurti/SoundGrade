@@ -3,14 +3,12 @@ import 'package:soundgrade/screens/profile.dart';
 import 'package:soundgrade/utils/style.dart';
 import 'package:soundgrade/widgets/searchBar.dart';
 import 'package:soundgrade/widgets/bottomNav.dart';
-import 'package:soundgrade/screens/login.dart';
 import 'package:soundgrade/screens/feed.dart';
 import 'package:soundgrade/widgets/playlistDetails.dart';
 import 'package:soundgrade/data/playlist.dart';
 import 'package:soundgrade/widgets/createPlaylistDialog.dart';
 import 'package:provider/provider.dart';
 import 'package:soundgrade/utils/theme_notifier.dart';
-import 'package:soundgrade/utils/style.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
