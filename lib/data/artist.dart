@@ -20,4 +20,10 @@ class Artist {
       throw Error();
     }
   }
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+      "imageUrl": imageUrl,
+    };
+  }
 }

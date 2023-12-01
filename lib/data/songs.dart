@@ -41,4 +41,13 @@ class Song {
     }
     return song;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+      "artist": artist.toJson(),
+      "rating": rating,
+      "imageUrl": imageUrl
+    };
+  }
 }
