@@ -22,6 +22,15 @@ class MainPage extends StatelessWidget {
             backgroundColor:
                 themeNotifier.isLightMode ? mainColor : darkerMainColor,
             title: CustomSearchBar(),
+            actions: [
+              IconButton(
+                icon:
+                    Icon(Icons.add, color: Colors.white), // Set the color here
+                onPressed: () {
+                  _showAddSongDialog(context);
+                },
+              ),
+            ],
           ),
           body: SongList(),
           bottomNavigationBar: BottomNavbar(
@@ -93,6 +102,46 @@ class MainPage extends StatelessWidget {
               }
             },
           ),
+        );
+      },
+    );
+  }
+
+  void _showAddSongDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Song'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                decoration: InputDecoration(labelText: 'Song'),
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Artist'),
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Image'),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                // Add your logic to handle the data entered in the dialog
+                Navigator.of(context).pop();
+              },
+              child: Text('Add'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+          ],
         );
       },
     );
