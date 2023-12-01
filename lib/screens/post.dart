@@ -11,6 +11,7 @@ import 'package:soundgrade/widgets/playlist_dialog.dart';
 import 'package:soundgrade/widgets/rate_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:soundgrade/utils/theme_notifier.dart';
+import 'package:soundgrade/services/firebase/rates.dart';
 
 class PostPage extends StatefulWidget {
   final Song songInfo;
@@ -34,7 +35,12 @@ class _PostPageState extends State<PostPage> {
   }
 
   void _loadReviews() async {
-    List<Rate> rateables = await readDummyRateable();
+    List<Map> rateablesRaw = await RateCollection.getList(widget.songInfo);
+    List<Rate> rateables = rateablesRaw
+        .map(
+          (e) => Rate.fromJson(e),
+        )
+        .toList();
     setState(() {
       reviews = rateables;
     });
@@ -128,7 +134,7 @@ class _PostPageState extends State<PostPage> {
                     ),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 16.0),
                             child: TextField(
@@ -188,7 +194,7 @@ class _PostPageState extends State<PostPage> {
                                       //AssetImage(rateable.profileImageUrl),
                                       ),
                                   SizedBox(width: 8.0),
-                                  Text(rateable.username),
+                                  Text(rateable.rater),
                                 ],
                               ),
                               SizedBox(height: 8.0),
@@ -222,7 +228,7 @@ class _PostPageState extends State<PostPage> {
             onTap: (index) {
               switch (index) {
                 case 0:
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MainPage()),
                   );

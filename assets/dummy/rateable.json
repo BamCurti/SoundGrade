@@ -1,40 +1,46 @@
 [
     {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     },
     {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     }, {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     }, {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     }, {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     }, {
-        "username": "Javier12",
+        "rater": "Javier12",
         "song": "The Strokes",
         "rating": 4,
-        "review": "Great song"
+        "review": "Great song",
+        "uuid": ""
         
     }
 ]
